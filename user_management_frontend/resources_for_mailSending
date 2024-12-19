@@ -1,7 +1,7 @@
 <!-- resources to send mail from java applications -->
 spring.mail.host=smtp.gmail.com
 spring.mail.port=587
-spring.mail.username=lokeshgangineni1329@gmail.com
-spring.mail.password=acwd qywf lsrv lwxz
+spring.mail.username=email
+spring.mail.password=password
 spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true

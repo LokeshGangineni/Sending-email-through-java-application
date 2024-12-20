@@ -1,0 +1,73 @@
+package com.jsp.spring_employee.service;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.jsp.spring_employee.dao.EmployeeDao;
+import com.jsp.spring_employee.dto.Employee;
+import com.jsp.spring_employee.execption.EmployeeIdNotFoundExecption;
+import com.jsp.spring_employee.util.ResponseStructure;
+
+@Service
+public class EmployeeService {
+	
+	@Autowired
+	EmployeeDao employeeDao;
+	
+//	public Employee saveEmployee(Employee employee)
+//	{
+//		return employeeDao.saveEmployee(employee);
+//	}
+	
+	public ResponseEntity<ResponseStructur> saveEmployee(Employee employee)
+	{
+		ResponseStructure structure=ResponseStructure
+				.builder()
+				.msg("Emp data saved successfully")
+				.status(HttpStatus.CREATED.value())
+				.data(employeeDao.saveEmployee(employee))
+				.dateTime(LocalDateTime.now())
+				.build();
+			
+		return new ResponseEntity<ResponseStructure>(structure,HttpStatus.CREATED);
+	}
+	public ResponseEntity<ResponseStructure> fetchEmployee(int id)
+	{
+		ResponseStructure structure=ResponseStructure
+				.builder()
+				.msg("Emp data fetched successfully")
+				.status(HttpStatus.FOUND.value())
+				.data(employeeDao.fetchEmployee(id))
+				.dateTime(LocalDateTime.now())
+				.build();
+		
+		return new ResponseEntity<ResponseStructure>(structure,HttpStatus.FOUND);
+	}
+	
+	
+	
+//	public ResponseEntity<ResponseStructure> fetchEmployee(int id)
+//	{
+//		Optional<Employee> db= employeeDao.fetchEmployee(id);
+//		if(db!=null)
+//		{
+//			ResponseStructure structure=ResponseStructure
+//					.builder()
+//					.msg("Emp data fetched successfully")
+//					.status(HttpStatus.FOUND.value())
+//					.data(employeeDao.fetchEmployee(id))
+//					.dateTime(LocalDateTime.now())
+//					.build();
+//			
+//		return new ResponseEntity<ResponseStructure>(structure,HttpStatus.FOUND);
+//		}else{
+//			throw new EmployeeIdNotFoundExecption();
+//		}
+//	}
+
+}

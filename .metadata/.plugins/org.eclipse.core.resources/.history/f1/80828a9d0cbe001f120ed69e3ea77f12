@@ -1,0 +1,53 @@
+package com.example.user_email.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.user_email.dto.UserEmail;
+import com.example.user_email.util.EmailConfig;
+
+@RestController
+public class EmailController {
+	@Autowired
+	EmailConfig ec;
+	
+	
+//	@PostMapping("/send")
+//	public String sendMsg(@RequestParam String  email)
+//	{
+//		try {
+//			ec.sendSimpleEmail(email);
+//			return "Sent successfully";
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			return "internal issue";
+//		}
+//	}
+	
+	
+	@PostMapping("/sent")
+	public String sendHtmlMsg(@RequestParam String  email)
+	{
+		try
+		{
+			ec.sendHtmlEmail(email);
+			return "Sent successfulli";
+		}
+		catch (Exception e) {
+			return "internal issue";
+		}
+	}
+	
+	@PostMapping("/save")
+	public UserEmail save(@RequestBody UserEmail user)
+	{
+		System.out.println(user);
+		return user;
+	}
+}
+
+
+//https://codeshare.io/3y8PRm

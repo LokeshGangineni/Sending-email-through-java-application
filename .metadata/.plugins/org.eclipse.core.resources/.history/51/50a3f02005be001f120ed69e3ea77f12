@@ -1,0 +1,5 @@
+package com.example.user_email.dto;
+
+public class User {
+
+}

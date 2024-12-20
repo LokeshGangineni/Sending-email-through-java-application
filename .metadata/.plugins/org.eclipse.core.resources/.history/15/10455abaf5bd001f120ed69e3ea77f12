@@ -1,0 +1,21 @@
+package com.example.user_management.util;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+
+public class UserConfig {
+	@Autowired
+	JavaMailSender jms;
+	public void sendSimpleEmail(String email)
+	{
+		SimpleMailMessage smm=new SimpleMailMessage();
+		smm.setFrom("lokeshgangineni1329@gmail.com");
+		smm.setTo("parvez0722@gmail.com");
+		smm.setSubject("Regestering in website ");
+		smm.setText("Thank u for regestring in our website \n regards");
+		
+		jms.send(smm);
+	}
+
+}
